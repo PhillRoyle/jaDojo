@@ -1,4 +1,4 @@
-import Minesweeper from './minesweeper';
+import Minesweeper from './minesweeper-phill-jim-william';
 
 
 describe('Minesweeper()', () => {

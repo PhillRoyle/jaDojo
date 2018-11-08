@@ -58,16 +58,16 @@ describe('Minesweeper()', () => {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  test('handles space surrounded by mines', () => {
+  test('phill handles mine surrounded by spaces', () => {
     const input = [
-      '***',
-      '* *',
-      '***',
+      '*  ',
+      ' * ',
+      '   ',
     ];
     const expected = [
-      '***',
-      '*8*',
-      '***',
+      '*21',
+      '2*1',
+      '111',
     ];
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
@@ -86,19 +86,33 @@ describe('Minesweeper()', () => {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xtest('handles horizontal line', () => {
+  test('handles space surrounded by mines', () => {
+    const input = [
+      '***',
+      '* *',
+      '***',
+    ];
+    const expected = [
+      '***',
+      '*8*',
+      '***',
+    ];
+    expect(minesweeper.annotate(input)).toEqual(expected);
+  });
+
+  test('handles horizontal line', () => {
     const input = [' * * '];
     const expected = ['1*2*1'];
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xtest('handles horizontal line, mines at edges', () => {
+  test('handles horizontal line, mines at edges', () => {
     const input = ['*   *'];
     const expected = ['*1 1*'];
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xtest('handles vertical line', () => {
+  test('handles vertical line', () => {
     const input = [
       ' ',
       '*',
@@ -116,7 +130,7 @@ describe('Minesweeper()', () => {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xtest('handles vertical line, mines at edges', () => {
+  test('handles vertical line, mines at edges', () => {
     const input = [
       '*',
       ' ',
@@ -134,7 +148,7 @@ describe('Minesweeper()', () => {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xtest('handles cross', () => {
+  test('handles cross', () => {
     const input = [
       '  *  ',
       '  *  ',
@@ -152,7 +166,7 @@ describe('Minesweeper()', () => {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xtest('handles large board', () => {
+  test('handles large board', () => {
     const input = [
       ' *  * ',
       '  *   ',

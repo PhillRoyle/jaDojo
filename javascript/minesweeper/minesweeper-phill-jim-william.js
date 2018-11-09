@@ -1,15 +1,14 @@
 class Minesweeper {
-  countNeighbours(row, column, grid) {
-
-    const rowRange = [row - 1, row, row + 1]
+  countNeighbours(rowIndex, columnIndex, grid) {
+    const rowRange = [rowIndex - 1, rowIndex, rowIndex + 1]
       .filter(row => row >= 0 && row < grid.length);
-    const columnRange = [column - 1, column, column + 1]
+    const columnRange = [columnIndex - 1, columnIndex, columnIndex + 1]
       .filter(column => column >= 0 && column < grid[0].length);
     let count = 0;
 
-    for (const rowRangeIndex in rowRange) {
-      for (const colRangeIndex in columnRange) {
-        if (grid[rowRange[rowRangeIndex]][columnRange[colRangeIndex]] === '*') {
+    for (const rowRangeIndex of rowRange) {//'of' gives the value
+      for (const colRangeIndex of columnRange) {//'of' gives the value
+        if (grid[rowRangeIndex][colRangeIndex] === '*') {
           count++;
         }
       }
@@ -18,26 +17,19 @@ class Minesweeper {
   }
 
   annotate(grid) {
-    let output = [];
+    const output = [...grid];
 
-    if (grid.length === 1 && grid[0] === '') {
-      output = [''];
-    }
-
-    for (let row = 0; row < grid.length; row++) {
-      for (let column = 0; column < grid[row].length; column++) {
-        if (column === 0) {
-          output[row] = '';
+    for (const rowIndex in [...Array(grid.length).keys()]) { //'in' gives index as a string
+      for (const colIndex in [...Array(grid[rowIndex].length).keys()]) { //'in' gives index as a string
+        if (colIndex == 0) {
+          output[rowIndex] = ''; //initialise the row
         }
 
-        if (grid[row][column] === ' ') {
-          output[row] += `${this.countNeighbours(row, column, grid) || ' '}`;
-        } else {
-          output[row] += '*';
-        }
+        output[rowIndex] += grid[rowIndex][colIndex] === ' ' ?
+          `${this.countNeighbours(Number(rowIndex), Number(colIndex), grid) || ' '}` :
+          '*';
       }
     }
-
     return output;
   }
 }

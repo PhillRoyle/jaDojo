@@ -1,6 +1,5 @@
 import Minesweeper from './minesweeper-phill-jim-william';
 
-
 describe('Minesweeper()', () => {
   let minesweeper;
 
@@ -166,7 +165,7 @@ describe('Minesweeper()', () => {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  test('handles large board', () => {
+  test.only('handles large board', () => {
     const input = [
       ' *  * ',
       '  *   ',
